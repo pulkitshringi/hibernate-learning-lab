@@ -37,6 +37,8 @@ public class FifthApp {
             else{
                 transaction.rollback();
             }
+        session.close();
+        sessionFactory.close();
         }
     }
 }

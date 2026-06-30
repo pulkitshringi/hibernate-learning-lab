@@ -38,6 +38,8 @@ public class FourthApp {
             else{
                 transaction.rollback();
             }
+        session.close();
+        sessionFactory.close();
         }
     }
 }

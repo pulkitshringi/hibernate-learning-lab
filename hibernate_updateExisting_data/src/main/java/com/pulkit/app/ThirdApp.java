@@ -38,6 +38,8 @@ public class ThirdApp {
             else{
                 transaction.rollback();
             }
+        session.close();
+        sessionFactory.close();
         }
     }
 }
