@@ -10,15 +10,18 @@ import org.hibernate.cfg.Configuration;
 
 public class SixthApp {
     public static void main(String[] args) {
-        SessionFactory sessionFactory = new Configuration().configure().addAnnotatedClass(Student.class).buildSessionFactory();
+        SessionFactory sessionFactory = new Configuration().addAnnotatedClass(Student.class).buildSessionFactory();
         Session session1 = sessionFactory.openSession();
         Session session2 = sessionFactory.openSession();
+        Transaction transaction = session1.beginTransaction();
         try{
 
-            Student student1 = session1.find(Student.class, 1);
-            System.out.println(student1);
-            Student student2 = session2.find(Student.class, 1);
-            System.out.println(student2);
+//            Student student1 = session1.find(Student.class, 1);
+//            System.out.println(student1);
+            Student student = new Student();
+            student.setsName("goodHealth");
+            student.setScity("heaven");
+            session1.persist(student);
         }
         catch (HibernateException e){
             e.printStackTrace();
@@ -26,6 +29,7 @@ public class SixthApp {
             e.printStackTrace();
         }
         finally {
+            transaction.commit();
         session1.close();
         session2.close();
         sessionFactory.close();

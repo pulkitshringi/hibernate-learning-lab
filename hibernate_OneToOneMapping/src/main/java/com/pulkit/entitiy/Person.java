@@ -1,0 +1,47 @@
+package com.pulkit.entitiy;
+
+import jakarta.persistence.*;
+
+@Entity
+public class Person {
+    @Id
+    private Integer id;
+    private String name;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="passport_id_column") // column name
+    private Passport passport;
+
+    // getters and setters
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Passport getPassport() {
+        return passport;
+    }
+
+    public void setPassport(Passport passport) {
+        this.passport = passport;
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", passport=" + passport +
+                '}';
+    }
+}

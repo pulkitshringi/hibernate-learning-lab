@@ -6,6 +6,8 @@ import jakarta.persistence.*;
 @Table(name="StudentTable")
 public class Student {
     @Id
+    @GeneratedValue(generator = "my_seq", strategy = GenerationType.SEQUENCE) // ID starts from 100 now
+    @SequenceGenerator(name="my_seq", sequenceName = "My_ownSequence", initialValue = 100, allocationSize = 1)
     private Integer sid;
     @Column(name="Student_city")
     private String scity;
